@@ -18,11 +18,14 @@ class MoviesSlidesshow extends StatelessWidget {
           scale: 0.9,
           autoplay: true,
           pagination: SwiperPagination(
-              margin: const EdgeInsets.only(top: 0),
+              margin: const EdgeInsets.only(top: 25), // baja los puntos
               builder: DotSwiperPaginationBuilder(
-                  activeColor: colors.primary,
-                  color: colors.secondary,
-                  activeSize: 13)),
+                activeColor: colors.primary,
+                color: colors.secondary,
+                activeSize: 13,
+                size: 8,
+                space: 3,
+              )),
           itemCount: movies.length,
           itemBuilder: (context, index) {
             return _Slide(
@@ -39,16 +42,13 @@ class _Slide extends StatelessWidget {
     required this.movie,
   });
 
-  final decoration = BoxDecoration(
-    borderRadius: BorderRadius.circular(23),
-    boxShadow: const [
-      BoxShadow(
+  final decoration =
+      BoxDecoration(borderRadius: BorderRadius.circular(23), boxShadow: const [
+    BoxShadow(
         color: Color.fromARGB(139, 0, 0, 0),
         blurRadius: 10,
-        offset: Offset(0, 10)
-      )
-    ]
-  );
+        offset: Offset(0, 10))
+  ]);
 
   @override
   Widget build(BuildContext context) {
@@ -62,9 +62,9 @@ class _Slide extends StatelessWidget {
               movie.backdropPath,
               fit: BoxFit.cover,
               loadingBuilder: (context, child, loadingProgress) {
-
                 if (loadingProgress != null) {
-                  return const DecoratedBox(decoration: BoxDecoration( color: Colors.black12));
+                  return const DecoratedBox(
+                      decoration: BoxDecoration(color: Colors.black12));
                 }
 
                 return FadeIn(child: child);

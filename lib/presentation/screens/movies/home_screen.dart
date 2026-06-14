@@ -1,6 +1,8 @@
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:cinemapedia/presentation/providers/movies/movies_providers.dart';
+import 'package:cinemapedia/presentation/providers/movies/movies_slideshow_provider.dart';
 import 'package:cinemapedia/presentation/widgets/movies/movies_slidesshow.dart';
+import 'package:cinemapedia/presentation/widgets/shared/custom_bottom_navigation.dart';
 import 'package:cinemapedia/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -41,18 +43,22 @@ class _HomeViewState extends ConsumerState<_HomeView> {
   @override
   Widget build(BuildContext context) {
 
-    final nowPlayingMovies = ref.watch( nowPlayingMoviesProvider );
+    final slideShowMovies = ref.watch( moviesSlidesshowProvider );
 
 
-    return  Column(
-      children: [
-
-        const CustomAppbar(),
-
-
-        MoviesSlidesshow(movies: nowPlayingMovies)
-
-      ],
+    return  Scaffold(
+      body: Column(
+        children: [
+      
+          const CustomAppbar(),
+      
+      
+          MoviesSlidesshow(movies: slideShowMovies),
+      
+      
+        ],
+      ),
+      bottomNavigationBar: const CustomBottomNavigation(),
     );
   }
 }
