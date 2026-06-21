@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:cinemapedia/config/helpers/human_formats.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
 
@@ -87,7 +88,7 @@ class _Slide extends StatelessWidget {
           // * title
           SizedBox(
             width: 150,
-            child: Text(movie.title, style:  textStyle.titleSmall),
+            child: Text(movie.title, style:  textStyle.titleSmall, maxLines: 2),
           ),
 
 
@@ -99,7 +100,7 @@ class _Slide extends StatelessWidget {
               const SizedBox(height: 3,),
               Text(movie.voteAverage.toStringAsFixed(1), style: textStyle.bodyMedium?.copyWith( color: Colors.yellow.shade800 )),
               const Spacer(),
-              Text(movie.popularity.toString(), style: textStyle.bodySmall,)
+              Text(HumanFormats.number(movie.popularity), style: textStyle.bodySmall,)
 
             ],),
           )
