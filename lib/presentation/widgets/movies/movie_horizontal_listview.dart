@@ -22,6 +22,28 @@ class MovieHorizontalListview extends StatefulWidget {
 }
 
 class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
+  final scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    scrollController.addListener((() {
+      if (widget.loadNextPage == null) return;
+
+      if ((scrollController.position.pixels + 200) >=
+          scrollController.position.maxScrollExtent) {
+        widget.loadNextPage!();
+      }
+    }));
+  }
+
+  @override
+  dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -32,6 +54,7 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
             _Title(title: widget.title, subTitle: widget.subTitle),
           Expanded(
               child: ListView.builder(
+                  controller: scrollController,
                   itemCount: widget.movies.length,
                   scrollDirection: Axis.horizontal,
                   physics: const BouncingScrollPhysics(),
@@ -81,28 +104,35 @@ class _Slide extends StatelessWidget {
             ),
           ),
 
-
-          const SizedBox(height: 5,),
-
+          const SizedBox(
+            height: 5,
+          ),
 
           // * title
           SizedBox(
             width: 150,
-            child: Text(movie.title, style:  textStyle.titleSmall, maxLines: 2),
+            child: Text(movie.title, style: textStyle.titleSmall, maxLines: 2),
           ),
-
 
           // * Raiting
           SizedBox(
             width: 150,
-            child: Row(children: [
-              Icon(Icons.star_half_outlined, color: Colors.yellow.shade800),
-              const SizedBox(height: 3,),
-              Text(movie.voteAverage.toStringAsFixed(1), style: textStyle.bodyMedium?.copyWith( color: Colors.yellow.shade800 )),
-              const Spacer(),
-              Text(HumanFormats.number(movie.popularity), style: textStyle.bodySmall,)
-
-            ],),
+            child: Row(
+              children: [
+                Icon(Icons.star_half_outlined, color: Colors.yellow.shade800),
+                const SizedBox(
+                  height: 3,
+                ),
+                Text(movie.voteAverage.toStringAsFixed(1),
+                    style: textStyle.bodyMedium
+                        ?.copyWith(color: Colors.yellow.shade800)),
+                const Spacer(),
+                Text(
+                  HumanFormats.number(movie.popularity),
+                  style: textStyle.bodySmall,
+                )
+              ],
+            ),
           )
         ],
       ),
