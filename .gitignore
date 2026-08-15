@@ -35,6 +35,9 @@ migrate_working_dir/
 .pub/
 /build/
 
+# Notas personales de aprendizaje (no se trackean)
+/notes/
+
 # Symbolication related
 app.*.symbols
 
