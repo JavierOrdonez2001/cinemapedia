@@ -16,7 +16,7 @@ class MovieMapper {
       popularity: moviedb.popularity,
       posterPath: (moviedb.posterPath != '')
           ? 'https://image.tmdb.org/t/p/w500${moviedb.posterPath}'
-          : 'no-poster',
+          : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAuRAtZJo-bXdfNWvBTJPbMjnD23d03oAX_39nqQUOf1I-eCqotfDhwMc&s=10',
       releaseDate: moviedb.releaseDate ?? DateTime(1900),
       title: moviedb.title,
       video: moviedb.video,
@@ -32,7 +32,7 @@ class MovieMapper {
       id: moviedb.id,
       originalLanguage: moviedb.originalLanguage,
       originalTitle: moviedb.originalTitle,
-      overview: moviedb.overview,
+      overview: (moviedb.overview != '') ? moviedb.overview : 'Sin descripción',
       popularity: moviedb.popularity,
       posterPath: (moviedb.posterPath != '')
           ? 'https://image.tmdb.org/t/p/w500${moviedb.posterPath}'
