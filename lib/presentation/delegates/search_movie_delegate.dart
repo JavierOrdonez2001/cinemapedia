@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:cinemapedia/config/helpers/human_formats.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
 
@@ -84,7 +85,12 @@ class _MovieItem extends StatelessWidget {
           Text( movie.title, style: textStyle.titleMedium),
           (movie.overview.length > 100) 
           ? Text('${movie.overview.substring(0,100)}...')
-          : Text(movie.overview)
+          : Text(movie.overview),
+
+          Row(children: [
+            Icon( Icons.star_half_rounded, color: Colors.yellow.shade800,),
+            Text(HumanFormats.number(movie.voteAverage, 1), style: textStyle.bodyMedium!.copyWith(color: Colors.yellow.shade900))
+          ],)
         ],),
       )
     ],),);
