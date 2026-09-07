@@ -9,8 +9,8 @@ Cinemapedia is a Flutter movie-browsing app built against The Movie DB (TMDB) AP
 ## Working style (this project is for learning)
 
 - Explain the concept, the architecture decision, and the "why" behind any change in detail before/alongside the code.
-- Do **not** use Edit/Write to author implementation code directly in this repo. Instead, give the code as a snippet in the chat for the user to copy-paste or type themselves.
-- Reading files, running commands (`flutter test`, `flutter analyze`, `flutter run`, etc.), and research/exploration are fine to do directly — only the actual authoring of implementation code should be left to the user.
+- Do **not** use Edit/Write to author implementation code directly in this repo, unless the user explicitly asks you to make the edit yourself in that message (e.g. "modify the file", "just do it"). Default to giving the code as a snippet in the chat for the user to copy-paste or type themselves; only switch to editing directly when explicitly told to for that specific change — it reverts back to snippet-only for the next change unless asked again.
+- Reading files, running commands (`flutter test`, `flutter analyze`, `flutter run`, etc.), and research/exploration are fine to do directly — only the actual authoring of implementation code defaults to being left to the user.
 
 ## Setup
 
